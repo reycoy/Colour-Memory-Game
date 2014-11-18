@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<meta charset='utf-8'>
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<title>Colour Memory</title>
+<link rel="stylesheet" href="stylesheets/styles.css" />
+</head>
+<body>
+	<section id="game">
+						
+		<section id="cards">
+
+		</section> <!-- #cards -->
+						
+
+		<aside>
+			<section id="logotype">
+				<h1>Colour Memory</h1>
+			</section>
+			<section id="gameInfo">
+				<h2>GAME INFO</h2>
+				<h3>RULES</h3>
+				<ul>
+					<li>The goal of this game is to find colour pairs.</li>
+					<li>Press the arrows in your keyboard to navigate cards.</li>
+					<li>Pressing "enter" will open the currently selected card.</li>
+				</ul>
+				<h3>YOUR GAME</h3>
+				<ul>
+					<li class="moves">MOVES:&nbsp;<span> </span></li>
+					<li class="points">POINTS:&nbsp;<span> </span></li>
+				</ul>
+			</section>	
+			<button type"submit" class="btnReset" onClick="init()">RESTART GAME</a>
+		</aside>
+	
+	</section> <!-- #game -->
+	
+
+<div id="frmEndGame">
+	<form>
+		<h3>CONGRATULATIONS! <span>100 POINTS</span></h3>
+		<div class="form-group">
+			<label for="name">Your name: </label>
+			<input type="text" name="name" required id="name">
+		</div>
+		<div class="form-group">
+			<label for="email">Your email address: </label>
+			<input type="email" name="email" required placeholder="Enter a valid email address" id="email">
+		</div> 
+		<input type="hidden" name="finalPoints" value="100" />
+		<button type="submit" name="submit" value="submit">SUBMIT SCORE</button>
+	</form>
+</div>	
+
+<div id="ranking">
+	<div>
+		<h3>YOUR POSITION IS: <span></span> </h3>
+		<h4>BEST SCORES:</h4>
+		<ul>		
+		</ul>
+		<button type"submit" class="btnReset" onClick="init()">RESTART GAME</a>
+	</div>	
+</div>	
+
+
+
+<script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+<script src="javascripts/plugins/jquery-validate.js"></script>
+<script src="javascripts/dataService_v1.js"></script>
+<script src="javascripts/gameControl_v1.js"></script>
+<script src="javascripts/gameFinal_v1.js"></script>
+
+</body>
+</html>

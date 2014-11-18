@@ -1,0 +1,34 @@
+#frmEndGame {
+  @include modalWindowWrapper();
+  
+  form {
+    @include modalWindow(300px);
+    
+    label.error { color: $error-color; }
+    
+    div, h3 {
+      text-align: center;
+      font-size: 20px;
+      margin-bottom:20px;
+    }
+    
+    label {
+      text-align: left;
+      font-size: 14px;
+      display: block;
+    }
+    
+    input {
+      display: block;
+      width: 295px;
+      height: 20px;
+    }
+     
+    button {
+      @include button(5px, 300px);
+    }
+     
+  }  
+  
+}
+
