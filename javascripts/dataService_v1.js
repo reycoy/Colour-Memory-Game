@@ -35,15 +35,15 @@ var DataService = (function () {
 	}];
 	var userEmail = null;
 	
-	randomOperation = function() {
+	var randomOperation = function() {
 		return 0.5 - Math.random();
 	};
 	
-	shuffleCards = function() {
+	var shuffleCards = function() {
 		cardsInfo.sort(randomOperation);
 	};
 	
-	displayCards = function() {
+	var displayCards = function() {
 		shuffleCards();
 		for ( var i = 0; i < cardsInfo.length; i++ ) { 
 			var card = cardsInfo[i];
@@ -60,7 +60,7 @@ var DataService = (function () {
 
 	};
 	
-	sendScore = function() {		
+	var sendScore = function() {
         $("#frmEndGame form").validate({
             rules: {
                 "email": {
@@ -92,17 +92,17 @@ var DataService = (function () {
         });
 	};
 	
-	keepUserInfo = function() {
+	var keepUserInfo = function() {
 		userEmail = $("#frmEndGame form input[name='email']").val();
 	};
 	
-	isThisYourPosition = function(item) {
+	var isThisYourPosition = function(item) {
 		if ( (userEmail == item.email) && (GameControl.points == item.points) ) {
 			return true;
 		}
 	};
 	
-	getResults = function() {
+	var getResults = function() {
 	    $.ajax({
 	        url: 'php/endpoint_ranking.php',
 	        dataType: 'json',
@@ -135,5 +135,5 @@ var DataService = (function () {
 	
 })();
 
-displayCards();
-sendScore();
+DataService.displayCards();
+DataService.sendScore();

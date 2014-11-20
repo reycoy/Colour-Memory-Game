@@ -8,13 +8,13 @@ document.onkeydown = function(evt) {
             GameControl.rightArrowPressed();
             break;
         case 38:
-            upArrowPressed();
+            GameControl.upArrowPressed();
             break;
         case 40:
-            downArrowPressed();
+            GameControl.downArrowPressed();
             break;
         case 13:
-        	GameControl.introPressed();
+            GameControl.introPressed();
         	break;
     }
 };
@@ -64,25 +64,25 @@ var GameControl = (function () {
         	};        	
         };
         
-        isStartColumn = function() {
+        var isStartColumn = function() {
         	if (jQuery.inArray(selectedCard, startColumn) !== -1) {
         		return true;
         	};        	
         };
         
-        isLastCard = function() {
+        var isLastCard = function() {
         	if (selectedCard == lastCard) {
         		return true;
         	};
         };
         
-        isFirstCard = function() {
+        var isFirstCard = function() {
         	if (selectedCard == firstCard) {
         		return true;
         	};
         };
         
-        moveToNextVisible = function() {
+        var moveToNextVisible = function() {
         	if (isLastCard()) { selectedCard = firstCard; }
         	else { selectedCard++; };
         	
@@ -93,7 +93,7 @@ var GameControl = (function () {
         	}
         };
         
-        moveToPreviousVisible = function() {
+        var moveToPreviousVisible = function() {
         	if (isFirstCard()) { selectedCard = lastCard; }
         	else { selectedCard--; };
         	
@@ -104,7 +104,7 @@ var GameControl = (function () {
         	}
         };
         
-        moveToLowerVisible = function() {
+        var moveToLowerVisible = function() {
         	if (isLastCard()) { selectedCard = firstCard; }
         	else if (isFinalColumn()) { selectedCard = selectedCard - verticalJump; }
         	else { selectedCard = selectedCard + verticalMovement; }
@@ -116,7 +116,7 @@ var GameControl = (function () {
         	}
         };
         
-        moveToUpperVisible = function() {
+        var moveToUpperVisible = function() {
         	if (isFirstCard()) { selectedCard = lastCard; }
         	else if (isStartColumn()) { selectedCard = selectedCard + verticalJump; }
         	else { selectedCard = selectedCard - verticalMovement; };
@@ -128,33 +128,33 @@ var GameControl = (function () {
         	}
         };
  
-		leftArrowPressed = function() {
+		var leftArrowPressed = function() {
 		   cardDOM.eq(selectedCard).removeClass('selected');
 		   moveToPreviousVisible();
 		};
 		
-		rightArrowPressed = function() {
+		var rightArrowPressed = function() {
 		   cardDOM.eq(selectedCard).removeClass('selected');
 		   moveToNextVisible();
 		};
 		
-		downArrowPressed = function() {
+		var downArrowPressed = function() {
 		   cardDOM.eq(selectedCard).removeClass('selected');
 		   moveToLowerVisible();
 		};
 		
-		upArrowPressed = function() {
+		var upArrowPressed = function() {
 		   cardDOM.eq(selectedCard).removeClass('selected');
 		   moveToUpperVisible();
 		};
 		
-		introPressed = function() {
+		var introPressed = function() {
 			childrenSelectedCard = cardDOM.eq(selectedCard).children();
 			flipTwoCardsAndUpdateGameInfo();
 			compareCards();
 		};
 		
-		flipTwoCardsAndUpdateGameInfo = function() {
+		var flipTwoCardsAndUpdateGameInfo = function() {
 			if (flippedCard == 0 || flippedCard == 1) {
 				childrenSelectedCard.addClass('flip');
 				flippedCard++;		
@@ -168,20 +168,20 @@ var GameControl = (function () {
 		};
 
 		
-		displayGameInfo = function() {
+		var displayGameInfo = function() {
 			$('#gameInfo ul li.moves span').text(movements);
 			$('#gameInfo ul li.points span').text(GameControl.points);
 		};
 		
-		getCardId = function() {
+		var getCardId = function() {
 			return cardDOM.eq(selectedCard).children().find('[data-id]').attr('data-id');
 		};
 		
-		getCardColour = function() {
+		var getCardColour = function() {
 			return cardDOM.eq(selectedCard).children().find('[data-color-type]').attr('data-color-type');
 		};
 		
-		compareCards = function() {
+		var compareCards = function() {
 			if (elementsToCompare.length < 2) {
 				elementsToCompare.push( {"id": getCardId(), "color": getCardColour()} );
 				if (elementsToCompare.length == 2) {
@@ -190,7 +190,7 @@ var GameControl = (function () {
 						GameControl.points++;
 						displayGameInfo();
 						$("[data-color-type='" + elementsToCompare[0].color +"']").hide();
-						setAndDisplayFormSubmitScore();
+						GameFinal.setAndDisplayFormSubmitScore();
 					} else {
 						GameControl.points--;
 						displayGameInfo();
@@ -209,6 +209,8 @@ var GameControl = (function () {
         	points: points,
             leftArrowPressed: leftArrowPressed,
             rightArrowPressed: rightArrowPressed,
+            upArrowPressed: upArrowPressed,
+            downArrowPressed: downArrowPressed,
             introPressed: introPressed,
             init: init,
             setCardSelected: setCardSelected,
