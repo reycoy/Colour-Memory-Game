@@ -15,7 +15,7 @@ document.onkeydown = function(evt) {
             break;
         case 13:
         	GameControl.introPressed();
-        	break
+        	break;
     }
 };
 
@@ -29,7 +29,7 @@ var GameControl = (function () {
             cardDOM = $('.card');
 		var elementsToCompare = [];
             
-        init = function() {
+        var init = function() {
         	movements = 0;
         	GameControl.points = 100;
         	selectedCard = 0;
@@ -44,7 +44,7 @@ var GameControl = (function () {
         	setCardSelected();
         };
         
-        setCardSelected = function() {
+        var setCardSelected = function() {
         	var firstCard = cardDOM.eq(selectedCard);
         	firstCard.addClass('selected');
         };
@@ -58,7 +58,7 @@ var GameControl = (function () {
         	startColumn = [0, 1, 2 ,3];
         	
         
-        isFinalColumn = function() {
+        var isFinalColumn = function() {
         	if (jQuery.inArray(selectedCard, finalColumn) !== -1) {
         		return true;
         	};        	
@@ -216,4 +216,4 @@ var GameControl = (function () {
  
 })();
     
-init();
+GameControl.init();
